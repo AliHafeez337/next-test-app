@@ -22,8 +22,13 @@ export async function getStaticPaths(context) {
       previousListingHashes: [],
     }),
     jobs = [];
-  if (response && response.data && response.data.length) {
-    jobs = response.data;
+  if (
+    response &&
+    response.data &&
+    response.data.jobs &&
+    response.data.jobs.length
+  ) {
+    jobs = response.data.jobs;
   }
 
   return {
@@ -51,8 +56,13 @@ export async function getStaticProps(context) {
       previousListingHashes: [],
     }),
     jobs = [];
-  if (response && response.data && response.data.length) {
-    jobs = response.data;
+  if (
+    response &&
+    response.data &&
+    response.data.jobs &&
+    response.data.jobs.length
+  ) {
+    jobs = response.data.jobs;
   }
 
   let job = jobs.find((job) => job.jobId === jobId);

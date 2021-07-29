@@ -17,8 +17,13 @@ export async function getStaticProps() {
       previousListingHashes: [],
     }),
     jobs = [];
-  if (response && response.data && response.data.length) {
-    jobs = response.data;
+  if (
+    response &&
+    response.data &&
+    response.data.jobs &&
+    response.data.jobs.length
+  ) {
+    jobs = response.data.jobs;
   }
 
   return {
