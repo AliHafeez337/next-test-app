@@ -4,11 +4,23 @@ import axios from "axios";
 import JobDetail from "../../components/jobs/JobDetail";
 
 function Job(props) {
-  return <JobDetail job={props.job} />;
+  if (props.job) {
+    return <JobDetail job={props.job} />;
+  } else {
+    return "";
+  }
 }
 
 export async function getStaticPaths(context) {
-  let response = await axios.get("http://localhost:3000/api/jobs"),
+  let response = await await axios.post("https://www.zippia.com/api/jobs/", {
+      kills: true,
+      dismissedListingHashes: [],
+      fetchJobDesc: true,
+      jobTitle: "Business Analyst",
+      locations: [],
+      numJobs: 20,
+      previousListingHashes: [],
+    }),
     jobs = [];
   if (response && response.data && response.data.length) {
     jobs = response.data;
@@ -29,7 +41,15 @@ export async function getStaticPaths(context) {
 export async function getStaticProps(context) {
   let jobId = context.params.Job;
 
-  let response = await axios.get("http://localhost:3000/api/jobs"),
+  let response = await await axios.post("https://www.zippia.com/api/jobs/", {
+      kills: true,
+      dismissedListingHashes: [],
+      fetchJobDesc: true,
+      jobTitle: "Business Analyst",
+      locations: [],
+      numJobs: 20,
+      previousListingHashes: [],
+    }),
     jobs = [];
   if (response && response.data && response.data.length) {
     jobs = response.data;

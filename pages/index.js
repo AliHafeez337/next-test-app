@@ -7,7 +7,15 @@ function Jobs(props) {
 }
 
 export async function getStaticProps() {
-  let response = await axios.get("http://localhost:3000/api/jobs"),
+  let response = await await axios.post("https://www.zippia.com/api/jobs/", {
+      kills: true,
+      dismissedListingHashes: [],
+      fetchJobDesc: true,
+      jobTitle: "Business Analyst",
+      locations: [],
+      numJobs: 20,
+      previousListingHashes: [],
+    }),
     jobs = [];
   if (response && response.data && response.data.length) {
     jobs = response.data;
